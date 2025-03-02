@@ -1,13 +1,3 @@
-#services:
-#  nodelogger:
-#    url: http://nodelogger:3000/
-#
-#decision_logs:
-#  # console: true
-#  service: nodelogger
-#  reporting:
-#    min_delay_seconds: 5
-#    max_delay_seconds: 10
 logging:
   format: json
 
@@ -18,7 +8,7 @@ services:
 decision_logs:
   # console: true
   service: gologger
-  path: /logs
+  path: /
   reporting:
     min_delay_seconds: 5
     max_delay_seconds: 10

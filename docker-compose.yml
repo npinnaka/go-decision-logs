@@ -1,6 +1,6 @@
 services:
   gologger:
-    build: gologger
+    build: ./gologger
     image: gologger
     ports:
       - 3001:3001
@@ -9,8 +9,8 @@ services:
     ports:
       - 8181:8181
     volumes:
-      - .:/workspace
-    command: ["run", "--server", "-c", "/workspace/config.yml", "/workspace/policy.rego", "/workspace/mask.rego"]
+      - .:/config
+    command: ["run", "--server", "-c", "/config/config.yml", "/config/policy.rego", "/config/mask.rego"]
 
 networks:
   opa-network:

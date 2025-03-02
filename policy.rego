@@ -1,5 +1,5 @@
 # policy.rego
-package foo
+package authz
 
 default allow = false
 allow {
