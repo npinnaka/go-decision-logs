@@ -1,21 +1,12 @@
 # Use the official Go image as the base image
-FROM golang:1.23.6-alpine
-
-# Set the working directory inside the container
+FROM golang:1.23.6-alpine  AS builder
 WORKDIR /app
+COPY main.go .
+RUN go mod init gologger && go build -o gologger
 
-# Copy the Go module files and download the dependencies
-COPY go.mod ./
-RUN go mod download
-
-# Copy the rest of the application code
-COPY . .
-
-# Build the Go application
-RUN go build -o server .
-
-# Expose the port the server will run on
-EXPOSE 3000
-
-# Specify the command to run the application
-CMD ["./server"]
+FROM alpine:latest
+RUN apk add --no-cache netcat-openbsd
+WORKDIR /app
+COPY --from=builder /app/gologger .
+EXPOSE 3001
+CMD ["./gologger"]
