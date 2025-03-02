@@ -1,0 +1,17 @@
+services:
+  gologger:
+    build: gologger
+    image: gologger
+    ports:
+      - 3001:3001
+  opa:
+    image: openpolicyagent/opa:0.70.0
+    ports:
+      - 8181:8181
+    volumes:
+      - .:/workspace
+    command: ["run", "--server", "-c", "/workspace/config.yml", "/workspace/policy.rego", "/workspace/mask.rego"]
+
+networks:
+  opa-network:
+    driver: bridge

@@ -1,0 +1,24 @@
+#services:
+#  nodelogger:
+#    url: http://nodelogger:3000/
+#
+#decision_logs:
+#  # console: true
+#  service: nodelogger
+#  reporting:
+#    min_delay_seconds: 5
+#    max_delay_seconds: 10
+logging:
+  format: json
+
+services:
+  gologger:
+    url: http://gologger:3001/
+
+decision_logs:
+  # console: true
+  service: gologger
+  path: /logs
+  reporting:
+    min_delay_seconds: 5
+    max_delay_seconds: 10
