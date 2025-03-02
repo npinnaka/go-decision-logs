@@ -1,13 +1,13 @@
 # docker-compose.yml
 services:
   opa:
-    image: openpolicyagent/opa:1.2.0
-    command: run --server --addr :8181 --bundle /bundle/bundle.tar.gz -c /config/config.yml
+    image: openpolicyagent/opa:0.70.0
+    command: ["run", "--server", "-c", "/config/config.yml", "/bundle/authz.rego", "/bundle/mask.rego"]
     ports:
       - "8181:8181"
     volumes:
       - ./config/:/config
-      - ./package:/bundle
+      - ./bundle70:/bundle
 
     networks:
       - opa-network
