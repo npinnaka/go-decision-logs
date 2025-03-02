@@ -1,7 +1,7 @@
 ```
-docker-compose up --build --remove-orphans
+# terminal 1
+make deploy 
 
-curl -XPOST -d '{ "input": { "user": "john", "password": "secret" } }' http://localhost:8181/v1/data/foo/allow
-
-docker-compose down
+# terminal 2 
+make test
 ```
